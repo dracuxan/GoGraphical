@@ -21,11 +21,9 @@ type JobListing struct {
 	URL         string `json:"url"`
 }
 
-type Mutation struct {
-}
+type Mutation struct{}
 
-type Query struct {
-}
+type Query struct{}
 
 type UpdateJobListingInput struct {
 	Title       string `json:"title"`
