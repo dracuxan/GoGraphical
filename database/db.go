@@ -7,6 +7,7 @@ import (
 
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/mongo/readpref"
 
 	"github.com/dracuxan/job-listing-api/graph/model"
 )
@@ -28,7 +29,7 @@ func (db *DB) Connect() error {
 		log.Panic("Error connecting to mongodb:", err)
 	}
 
-	err = client.Ping(ctx, nil)
+	err = client.Ping(ctx, readpref.Primary())
 	if err != nil {
 		log.Panic("Error while verifying the connection:", err)
 	}
@@ -38,24 +39,29 @@ func (db *DB) Connect() error {
 }
 
 func (db *DB) CreateJobListing(input model.CreateJobListingInput) (*model.JobListing, error) {
-	return nil, nil
+	var jobListing model.JobListing
+	return &jobListing, nil
 }
 
 func (db *DB) UpdateJobListing(
 	id string,
 	input model.UpdateJobListingInput,
 ) (*model.JobListing, error) {
-	return nil, nil
+	var updatedJoblisting model.JobListing
+	return &updatedJoblisting, nil
 }
 
 func (db *DB) DeleteJobListing(id string) (*model.DeleteJobListingResponse, error) {
-	return nil, nil
+	var response model.DeleteJobListingResponse
+	return &response, nil
 }
 
 func (db *DB) GetJobs() ([]*model.JobListing, error) {
-	return nil, nil
+	var jobListings []*model.JobListing
+	return jobListings, nil
 }
 
 func (db *DB) GetJob(id string) (*model.JobListing, error) {
-	return nil, nil
+	var jobListing model.JobListing
+	return &jobListing, nil
 }
