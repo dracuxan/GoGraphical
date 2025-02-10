@@ -12,15 +12,12 @@ import (
 	"github.com/99designs/gqlgen/graphql/playground"
 	"github.com/vektah/gqlparser/v2/ast"
 
-	"github.com/dracuxan/job-listing-api/controllers"
 	"github.com/dracuxan/job-listing-api/graph"
 )
 
 const defaultPort = "8080"
 
 func main() {
-	db := controllers.DB{}
-	db.Connect()
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = defaultPort

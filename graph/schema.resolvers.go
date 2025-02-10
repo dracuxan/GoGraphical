@@ -8,45 +8,58 @@ import (
 	"context"
 	"fmt"
 
+	"github.com/dracuxan/job-listing-api/controllers"
 	"github.com/dracuxan/job-listing-api/graph/model"
 )
 
+var db = controllers.Connect()
+
 // CreateJobListing is the resolver for the createJobListing field.
 func (r *mutationResolver) CreateJobListing(ctx context.Context, input model.CreateJobListingInput) (*model.JobListing, error) {
-	jobListing, err := r.DB.CreateJobListing(input)
+	jobListing, err := db.CreateJobListing(input)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("failed to create job listing: %w", err)
 	}
 	return jobListing, nil
 }
 
 // UpdateJobListing is the resolver for the updateJobListing field.
 func (r *mutationResolver) UpdateJobListing(ctx context.Context, id string, input model.UpdateJobListingInput) (*model.JobListing, error) {
-	updateJoblisting, err := r.DB.UpdateJobListing(id, input)
+	updatedJobListing, err := db.UpdateJobListing(id, input)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("failed to update job listing with ID %s: %w", id, err)
 	}
-	return updateJoblisting, nil
+	return updatedJobListing, nil
 }
 
 // DeleteJobListing is the resolver for the deleteJobListing field.
 func (r *mutationResolver) DeleteJobListing(ctx context.Context, id string) (*model.DeleteJobListingResponse, error) {
-	deletedJobListing, err := r.DB.DeleteJobListing(id)
+	deletedJobListing, err := db.DeleteJobListing(id)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("failed to delete job listing with ID %s: %w", id, err)
 	}
-
 	return deletedJobListing, nil
 }
 
 // Jobs is the resolver for the jobs field.
 func (r *queryResolver) Jobs(ctx context.Context) ([]*model.JobListing, error) {
-	panic(fmt.Errorf("not implemented: Jobs - jobs"))
+	jobListings, err := db.GetJobs()
+	if err != nil {
+		return nil, fmt.Errorf("failed to fetch job listings: %w", err)
+	}
+	return jobListings, nil
 }
 
 // Job is the resolver for the job field.
 func (r *queryResolver) Job(ctx context.Context, id *string) (*model.JobListing, error) {
-	panic(fmt.Errorf("not implemented: Job - job"))
+	if id == nil {
+		return nil, fmt.Errorf("job ID is required")
+	}
+	jobListing, err := db.GetJob(*id)
+	if err != nil {
+		return nil, fmt.Errorf("failed to fetch job listing with ID %s: %w", *id, err)
+	}
+	return jobListing, nil
 }
 
 // Mutation returns MutationResolver implementation.

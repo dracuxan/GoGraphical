@@ -2,6 +2,6 @@
 
 - [x] Schema File
 - [x] Resolvers
-- [ ] Database/Controllers
+- [x] Controllers
 - [ ] Test Files
 - [x] Workflows
