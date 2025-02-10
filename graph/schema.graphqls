@@ -29,9 +29,9 @@ input CreateJobListingInput {
 }
 
 input UpdateJobListingInput {
-  title: String!
-  description: String!
-  url: String!
+  title: String
+  description: String
+  url: String
 }
 
 type DeleteJobListingResponse {

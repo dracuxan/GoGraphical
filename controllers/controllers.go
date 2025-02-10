@@ -61,7 +61,7 @@ func (db *DB) CreateJobListing(jobInfo model.CreateJobListingInput) (*model.JobL
 		log.Fatal(err)
 	}
 
-	insertedID := insert.InsertedID.(primitive.ObjectID).Hex()
+	insertedID := insert.InsertedID.(primitive.ObjectID)
 	returnJobListing := model.JobListing{
 		ID:          insertedID,
 		Title:       jobInfo.Title,
