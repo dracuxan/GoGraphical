@@ -158,7 +158,7 @@ func (db *DB) GetJob(jobID string) (*model.JobListing, error) {
 	}
 
 	var jobListing model.JobListing
-	err = jobColl.FindOne(ctx, bson.M{"_id": objID}).Decode(jobListing)
+	err = jobColl.FindOne(ctx, bson.M{"_id": objID}).Decode(&jobListing)
 	if err != nil {
 		return nil, err
 	}
