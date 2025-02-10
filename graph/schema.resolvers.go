@@ -24,12 +24,21 @@ func (r *mutationResolver) CreateJobListing(ctx context.Context, input model.Cre
 
 // UpdateJobListing is the resolver for the updateJobListing field.
 func (r *mutationResolver) UpdateJobListing(ctx context.Context, id string, input model.UpdateJobListingInput) (*model.JobListing, error) {
-	return db.updateJobListing(id, input), nil
+	updateJoblisting, err := r.DB.UpdateJobListing(id, input)
+	if err != nil {
+		return nil, err
+	}
+	return updateJoblisting, nil
 }
 
 // DeleteJobListing is the resolver for the deleteJobListing field.
 func (r *mutationResolver) DeleteJobListing(ctx context.Context, id string) (*model.DeleteJobListingResponse, error) {
-	return db.deleteJobListing(id), nil
+	deletedJobListing, err := r.DB.DeleteJobListing(id)
+	if err != nil {
+		return nil, err
+	}
+
+	return deletedJobListing, nil
 }
 
 // Jobs is the resolver for the jobs field.

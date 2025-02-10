@@ -40,3 +40,14 @@ func (db *DB) Connect() error {
 func (db *DB) CreateJobListing(input model.CreateJobListingInput) (*model.JobListing, error) {
 	return nil, nil
 }
+
+func (db *DB) UpdateJobListing(
+	id string,
+	input model.UpdateJobListingInput,
+) (*model.JobListing, error) {
+	return nil, nil
+}
+
+func (db *DB) DeleteJobListing(id string) (*model.DeleteJobListingResponse, error) {
+	return nil, nil
+}
