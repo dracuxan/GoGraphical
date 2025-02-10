@@ -6,12 +6,10 @@ package graph
 
 import (
 	"context"
+	"fmt"
 
-	"github.com/dracuxan/job-listing-api/database"
 	"github.com/dracuxan/job-listing-api/graph/model"
 )
-
-var db database.DB
 
 // CreateJobListing is the resolver for the createJobListing field.
 func (r *mutationResolver) CreateJobListing(ctx context.Context, input model.CreateJobListingInput) (*model.JobListing, error) {
@@ -43,12 +41,12 @@ func (r *mutationResolver) DeleteJobListing(ctx context.Context, id string) (*mo
 
 // Jobs is the resolver for the jobs field.
 func (r *queryResolver) Jobs(ctx context.Context) ([]*model.JobListing, error) {
-	return db.GetJobs(), nil
+	panic(fmt.Errorf("not implemented: Jobs - jobs"))
 }
 
 // Job is the resolver for the job field.
 func (r *queryResolver) Job(ctx context.Context, id *string) (*model.JobListing, error) {
-	return db.GetJob(id), nil
+	panic(fmt.Errorf("not implemented: Job - job"))
 }
 
 // Mutation returns MutationResolver implementation.

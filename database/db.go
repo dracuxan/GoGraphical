@@ -51,3 +51,11 @@ func (db *DB) UpdateJobListing(
 func (db *DB) DeleteJobListing(id string) (*model.DeleteJobListingResponse, error) {
 	return nil, nil
 }
+
+func (db *DB) GetJobs() ([]*model.JobListing, error) {
+	return nil, nil
+}
+
+func (db *DB) GetJob(id string) (*model.JobListing, error) {
+	return nil, nil
+}
