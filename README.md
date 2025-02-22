@@ -1,3 +1,5 @@
+[![wakatime](https://wakatime.com/badge/github/dracuxan/GoGraphical.svg)](https://wakatime.com/badge/github/dracuxan/GoGraphical)
+
 # GoGraphical - Using GraphQL to create a CRUD API using Go and MongoDB
 
 - [x] Schema File
@@ -6,7 +8,7 @@
 - [ ] Test Files
 - [x] Workflows
 
-## Queries 
+## Queries
 ### Query:
 GettAllJobs:
 ```
