@@ -20,7 +20,6 @@
 git clone https://github.com/your-username/GoGraphical.git
 
 cd GoGraphical
-
 ```
 
 2. Install dependencies
@@ -33,7 +32,6 @@ go mod tidy
 
 ```
 go run main.go
-
 ```
 
 ## Directory Structure
@@ -56,14 +54,11 @@ GoGraphical/
 ├── README.md
 ├── server.go                   # Entry point of the application
 └── tools.go
-
 ```
 
 ## Running the GraphQL Playground
 
-- Once the server is running, open:
-
-```http://localhost:8080/```
+- Once the server is running, open: `http://localhost:8080/`
 
 - Use the UI to test queries and mutations.
 
@@ -174,8 +169,8 @@ input:
 
 ## Contributing
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature-branch`)
-3. Commit your changes (`git commit -m "Add new feature"`)
-4. Push to the branch (`git push origin feature-branch`)
-5. Open a Pull Request
+    1. Fork the repository
+    2. Create a feature branch (`git checkout -b feature-branch`)
+    3. Commit your changes (`git commit -m "Add new feature"`)
+    4. Push to the branch (`git push origin feature-branch`)
+    5. Open a Pull Request
