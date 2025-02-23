@@ -31,7 +31,7 @@ go mod tidy
 3. Run the server
 
 ```
-go run main.go
+go run server.go
 ```
 
 ## Directory Structure
