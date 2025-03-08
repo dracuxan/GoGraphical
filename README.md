@@ -1,55 +1,65 @@
 [![wakatime](https://wakatime.com/badge/github/dracuxan/GoGraphical.svg)](https://wakatime.com/badge/github/dracuxan/GoGraphical)
 
-# GoGraphical - Using GraphQL to create a CRUD API using Go and MongoDB
+# GoGraphical
+
+**GoGraphical** is a CRUD API built using GraphQL, Go, and MongoDB. This project showcases a framework for managing job listings using GraphQL.
+
+## Features
 
 - [x] Schema File
 - [x] Resolvers
 - [x] Controllers
 - [ ] Test Files
 - [x] Workflows
-- [ ] New features:
+- [ ] Planned Features:
     - [ ] Authentication (JWT-based)
     - [ ] Pagination for job listings
     - [ ] Filtering and sorting
 
 ## Project Setup & Installation
 
-1. Clone the repository:
+### Prerequisites
 
-```
-git clone https://github.com/your-username/GoGraphical.git
+- Go (version 1.16 or later)
+- MongoDB
 
-cd GoGraphical
-```
+### Installation Steps
 
-2. Install dependencies
+1. **Clone the repository:**
 
-```
-go mod tidy
-```
+   ```bash
+   git clone https://github.com/your-username/GoGraphical.git
+   cd GoGraphical
+   ```
 
-3. Run the server
+2. **Install dependencies:**
 
-```
-go run server.go
-```
+   ```bash
+   go mod tidy
+   ```
+
+3. **Run the server:**
+
+   ```bash
+   go run server.go
+   ```
 
 ## Directory Structure
 
 ```
 GoGraphical/
 ├── controllers/                # Database interactions
-│   └── controllers.go
+│   └── controllers.go
 ├── go.mod
 ├── go.sum
 ├── gqlgen.yml
 ├── graph/
-│   ├── generated.go
-│   ├── model/                  # Structs for GraphQL types
-│   │   └── models_gen.go
-│   ├── resolver.go
-│   ├── schema.graphqls         # GraphQL schema
-│   └── schema.resolvers.go     # GraphQL schema resolvers
+│   ├── generated.go
+│   ├── model/                  # Structs for GraphQL types
+│   │   └── models_gen.go
+│   ├── resolver.go
+│   ├── schema.graphqls         # GraphQL schema
+│   └── schema.resolvers.go     # GraphQL schema resolvers
 ├── LICENSE
 ├── README.md
 ├── server.go                   # Entry point of the application
@@ -58,50 +68,50 @@ GoGraphical/
 
 ## Running the GraphQL Playground
 
-- Once the server is running, open: `http://localhost:8080/`
-
+- Once the server is running, open: [http://localhost:8080/](http://localhost:8080/)
 - Use the UI to test queries and mutations.
 
+## GraphQL Queries
 
-## Queries
-### Query:
-GettAllJobs:
-```
-query GetAllJob{
-  jobs{
-    _id,
-    description,
-    company,
+### Query: Get All Jobs
+
+```graphql
+query GetAllJob {
+  jobs {
+    _id
+    description
+    company
     url
   }
 }
 ```
 
----
+### Query: Get Job By ID
 
-GetJobById:
-```
-query GetJobById($id:ID!){
-  job(id:$id){
-    _id,
-    description,
-    company,
+```graphql
+query GetJobById($id: ID!) {
+  job(id: $id) {
+    _id
+    description
+    company
     url
   }
 }
 ```
-input:
-```
+
+**Input:**
+
+```json
 {
   "id": "job-id"
 }
 ```
 
----
+## GraphQL Mutations
 
-### Mutations
-CreateJobListing:
-```
+### Mutation: Create Job Listing
+
+```graphql
 mutation CreateJobListing($input: CreateJobListingInput!) {
   createJobListing(input: $input) {
     _id
@@ -112,8 +122,10 @@ mutation CreateJobListing($input: CreateJobListingInput!) {
   }
 }
 ```
-input:
-```
+
+**Input:**
+
+```json
 {
   "input": {
     "title": "SDE - I",
@@ -124,10 +136,9 @@ input:
 }
 ```
 
----
+### Mutation: Update Job Listing
 
-UpdateJobListing:
-```
+```graphql
 mutation UpdateJob($id: ID!, $input: UpdateJobListingInput!) {
   updateJobListing(id: $id, input: $input) {
     title
@@ -138,8 +149,10 @@ mutation UpdateJob($id: ID!, $input: UpdateJobListingInput!) {
   }
 }
 ```
-input:
-```
+
+**Input:**
+
+```json
 {
   "id": "job-id",
   "input": {
@@ -148,29 +161,20 @@ input:
 }
 ```
 
----
+### Mutation: Delete Job Listing
 
-DeleteJobListing:
-```
+```graphql
 mutation DeleteJobListing($id: ID!) {
   deleteJobListing(id: $id) {
     deleteJobId
   }
 }
 ```
-input:
-```
+
+**Input:**
+
+```json
 {
-  "id" : "job id"
+  "id": "job-id"
 }
 ```
-
----
-
-## Contributing
-
-    1. Fork the repository
-    2. Create a feature branch (`git checkout -b feature-branch`)
-    3. Commit your changes (`git commit -m "Add new feature"`)
-    4. Push to the branch (`git push origin feature-branch`)
-    5. Open a Pull Request
