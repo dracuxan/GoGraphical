@@ -10,19 +10,25 @@ on:
     branches: [ "main" ]
 
 jobs:
+  test:
+    runs-on: ubuntu-latest  
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          go-version: '1.23.3'
+
+      - name: test
+        run: go test -v ./...
 
   build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
+    needs: test
     steps:
     - uses: actions/checkout@v4
 
     - name: Set up Go
       uses: actions/setup-go@v4
-      with:
-        go-version: '1.23.3'
 
     - name: Build
       run: go build -v ./...
-
-    - name: Test
-      run: go test -v ./...
